@@ -22,3 +22,8 @@ function getNumber (string) {
   return Number(modifiedString);
 }
 
+checkString('Hello', 15);
+
+checkPalindrome('Hello');
+
+getNumber('He22llo');
