@@ -1,12 +1,12 @@
 import {getPictures} from './utils.js';
 
 const userDialog = document.querySelector('.pictures');
-const addTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const addNewImages = getPictures();
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const newImages = getPictures();
 const userFragment = document.createDocumentFragment();
 
-addNewImages.forEach(({url, description, likes, comments}) => {
-  const addElement = addTemplate.cloneNode(true);
+newImages.forEach(({url, description, likes, comments}) => {
+  const addElement = pictureTemplate.cloneNode(true);
   addElement.querySelector('.picture__img').src = url;
   addElement.querySelector('.picture__img').alt = description;
   addElement.querySelector('.picture__likes').textContent = likes;
@@ -14,6 +14,5 @@ addNewImages.forEach(({url, description, likes, comments}) => {
   userFragment.append(addElement);
 });
 
-const finalDialog = userDialog.append(userFragment);
+userDialog.append(userFragment);
 
-export {finalDialog};
