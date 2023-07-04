@@ -1,4 +1,6 @@
-import {COMMENTS_ARRAY, NAMES, PHOTO_DESCRIPTION, MAX_COMMENT_COUNT, LIKE_MIN_COUNT, LIKE_MAX_COUNT, AVATAR_MAX_COUNT} from './data.js';
+import {COMMENTS_ARRAY, NAMES, PHOTO_DESCRIPTION, MAX_COMMENT_COUNT, LIKE_MIN_COUNT, LIKE_MAX_COUNT, AVATAR_MAX_COUNT, IMAGES_QUANTITY} from './data.js';
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
@@ -44,8 +46,11 @@ const createDescription = (index) => ({
 });
 
 const getPictures = () => Array.from(
-  {length: 25},
+  {length: IMAGES_QUANTITY},
   (_, pictureIndex) => createDescription(pictureIndex + 1),
 );
 
-export {getPictures};
+const newImages = getPictures();
+
+export {newImages, isEscapeKey};
+
