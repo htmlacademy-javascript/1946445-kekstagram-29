@@ -22,6 +22,7 @@ const onCloseButtonKeydown = (evt) => {
     commentsVisible = 0;
     commentsList.length = 0;
   }
+  body.classList.remove('modal-open');
 };
 
 const renderUserInfo = (imageData) => {
