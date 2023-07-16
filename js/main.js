@@ -1,4 +1,4 @@
-import {getPictures} from './utils.js';
-import './render.js';
+import './utils.js';
+import './render-thumbnails.js';
+import './render-fullsized.js';
 
-getPictures();
