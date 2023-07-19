@@ -2,8 +2,8 @@ import { isEscapeKey } from './utils.js';
 import { resetScale } from './scale.js';
 import { MAX_HASHTAG_QUANTITY, VALID_SYMBOLS } from './data.js';
 import { resetEffects } from './slider-effects.js';
+import { body } from './render-fullsized.js';
 
-const body = document.querySelector('body');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const fileField = document.querySelector('#upload-file');
 const cancelButton = document.querySelector('#upload-cancel');

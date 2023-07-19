@@ -95,3 +95,4 @@ bigImageCloseButton.addEventListener ('click', closeModal);
 imagesContainer.addEventListener ('click', showBigImage);
 bigImageCommentsLoader.addEventListener('click', showMoreComments);
 
+export {body};
