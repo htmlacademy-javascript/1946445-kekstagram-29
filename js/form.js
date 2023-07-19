@@ -51,13 +51,10 @@ const onCancelButtonKeydown = () => {
   closeUploadModal();
 };
 
-const normalizeTags = (value) => {
-  const tags = value
-    .trim()
-    .split(' ')
-    .filter((tag) => Boolean(tag.length));
-  return tags;
-};
+const normalizeTags = (value) => value
+  .trim()
+  .split(' ')
+  .filter((tag) => Boolean(tag.length));
 
 const hasValidTags = (value) => normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
 
