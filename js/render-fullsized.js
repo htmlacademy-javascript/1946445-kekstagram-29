@@ -81,12 +81,14 @@ const renderBigImageData = ({url, likes, comments, description}) => {
 };
 
 const showBigImage = (evt) => {
-  const imageId = parseInt(evt.target.dataset.imageId, 10);
-  const pictureData = newImages.find((item) => item.id === imageId);
-  bigImageCommentsTemplate.textContent = '';
-  renderBigImageData(pictureData);
-  openModal();
-  showMoreComments();
+  if (evt.target.classList.contains('picture__img')) {
+    const imageId = parseInt(evt.target.dataset.imageId, 10);
+    const pictureData = newImages.find((item) => item.id === imageId);
+    bigImageCommentsTemplate.textContent = '';
+    renderBigImageData(pictureData);
+    openModal();
+    showMoreComments();
+  }
 };
 
 bigImageCloseButton.addEventListener ('click', closeModal);
