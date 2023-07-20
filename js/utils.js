@@ -1,4 +1,5 @@
-import {COMMENTS_ARRAY, NAMES, PHOTO_DESCRIPTION, MAX_COMMENT_COUNT, LIKE_MIN_COUNT, LIKE_MAX_COUNT, AVATAR_MAX_COUNT, IMAGES_QUANTITY} from './data.js';
+import {COMMENTS_ARRAY, NAMES, PHOTO_DESCRIPTION, MAX_COMMENT_COUNT,
+  LIKE_MIN_COUNT, LIKE_MAX_COUNT, AVATAR_MAX_COUNT, IMAGES_QUANTITY, ALERT_SHOW_TIME} from './data.js';
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -52,5 +53,26 @@ const getPictures = () => Array.from(
 
 const newImages = getPictures();
 
-export {newImages, isEscapeKey};
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+export {newImages, isEscapeKey, showAlert};
 

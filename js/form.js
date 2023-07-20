@@ -2,14 +2,15 @@ import { isEscapeKey } from './utils.js';
 import { resetScale } from './scale.js';
 import { MAX_HASHTAG_QUANTITY, VALID_SYMBOLS } from './data.js';
 import { resetEffects } from './slider-effects.js';
-import { body } from './render-fullsized.js';
 
+const body = document.querySelector('body');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const fileField = document.querySelector('#upload-file');
 const cancelButton = document.querySelector('#upload-cancel');
 const form = document.querySelector('.img-upload__form');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
+const submitButton = form.querySelector('.img-upload__submit');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -89,11 +90,30 @@ pristine.addValidator(
   true
 );
 
-const onFormSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
+const disableSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикуем...';
+};
+
+const enableSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
+
+const onFormSubmit = (callback) => {
+  form.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if (isValid) {
+      disableSubmitButton();
+      await callback(new FormData(form));
+      enableSubmitButton();
+    }
+  });
 };
 
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonKeydown);
 form.addEventListener('submit', onFormSubmit);
+
+export {onFormSubmit, closeUploadModal, onDocumentKeydown};
