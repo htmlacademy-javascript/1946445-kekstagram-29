@@ -1,5 +1,5 @@
 import { isEscapeKey } from './utils.js';
-import { resetScale } from './scale.js';
+import { resetScale, onBiggerButtonClick, onSmallerButtonClick, imageUploaded } from './scale.js';
 import { MAX_HASHTAG_QUANTITY, VALID_SYMBOLS } from './data.js';
 import { resetEffects } from './slider-effects.js';
 
@@ -11,6 +11,8 @@ const form = document.querySelector('.img-upload__form');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 const submitButton = form.querySelector('.img-upload__submit');
+const imageReducingButton = document.querySelector('.scale__control--smaller');
+const imageEnlargingButton = document.querySelector('.scale__control--bigger');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -21,6 +23,8 @@ const openUploadModal = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
+  imageReducingButton.addEventListener('click', onSmallerButtonClick);
+  imageEnlargingButton.addEventListener('click', onBiggerButtonClick);
 };
 
 const closeUploadModal = () => {
@@ -31,6 +35,9 @@ const closeUploadModal = () => {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
+  imageReducingButton.removeEventListener('click', onSmallerButtonClick);
+  imageEnlargingButton.removeEventListener('click', onBiggerButtonClick);
+  imageUploaded.style.transform = `scale(${100 / 100})`;
 };
 
 const isTextFieldFocused = () =>
@@ -114,6 +121,5 @@ const onFormSubmit = (callback) => {
 
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonKeydown);
-form.addEventListener('submit', onFormSubmit);
 
 export {onFormSubmit, closeUploadModal, onDocumentKeydown};
