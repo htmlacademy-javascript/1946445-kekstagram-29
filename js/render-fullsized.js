@@ -56,7 +56,7 @@ const renderComments = (comments) => {
     }
     bigImageCommentsTemplate.innerHTML = '';
     bigImageCommentsCount.textContent = commentsVisible;
-    bigImageCommentsCount.innerHTML = `${commentsVisible} из <span class="comments-count"> ${comments.length}</span> комментариев`;
+    bigImageCommentsCount.innerHTML = `${commentsVisible} из <span class="comments-count">${comments.length}</span> комментариев`;
     bigImageCommentsTemplate.appendChild(listFragment);
   };
 };
