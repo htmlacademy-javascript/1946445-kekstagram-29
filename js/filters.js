@@ -41,8 +41,6 @@ const onFilterButtonClick = (cb) => {
   });
 };
 
-document.removeEventListener('keydown', onFilterButtonClick);
-
 const showFilteredImages = (imagesData, callback) =>{
   imagesFilter.classList.remove('img-filters--inactive');
   images = [...imagesData];
