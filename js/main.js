@@ -6,7 +6,6 @@ import './scale.js';
 import './slider-effects.js';
 import {getData, sendData} from './api.js';
 import { showSuccessMessage, showErrorMessage } from './messages.js';
-import './filters.js';
 import { showFilteredImages } from './filters.js';
 import {TIMEOUT__DELAY} from './data.js';
 import './image-preview.js';
