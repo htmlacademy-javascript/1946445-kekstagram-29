@@ -1,13 +1,13 @@
 import { RANDOM__IMAGES__QUANTITY } from './data.js';
 
-const FilterType = {
+const FILTER_TYPES = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
   DISCUSSED: 'filter-discussed'
 };
 
 const imagesFilter = document.querySelector('.img-filters');
-let currentFilter = FilterType.DEFAULT;
+let currentFilter = FILTER_TYPES.DEFAULT;
 let images = [];
 
 const clearImages = () => document.querySelectorAll('.picture').forEach((picture) => picture.remove());
@@ -18,9 +18,9 @@ const filterPopular = (imageA, imageB) => imageB.comments.length - imageA.commen
 
 const sortImages = () => {
   switch(currentFilter) {
-    case FilterType.RANDOM:
+    case FILTER_TYPES.RANDOM:
       return [...images].sort(filterRandom).slice(0, RANDOM__IMAGES__QUANTITY);
-    case FilterType.DISCUSSED:
+    case FILTER_TYPES.DISCUSSED:
       return [...images].sort(filterPopular);
     default:
       return [...images];

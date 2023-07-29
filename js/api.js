@@ -1,5 +1,7 @@
-const DATA_SERVER = 'https://29.javascript.pages.academy/kekstagram/data';
-const SENDING_SERVER = 'https://29.javascript.pages.academy/kekstagram';
+const ENDPOINTS = {
+  GET_DATA: 'https://29.javascript.pages.academy/kekstagram/data',
+  SUBMIT_FORM: 'https://29.javascript.pages.academy/kekstagram'
+};
 
 const Method = {
   GET: 'GET',
@@ -23,8 +25,8 @@ const load = (route, errorText, method = Method.GET, body = null) =>
       throw new Error(errorText);
     });
 
-const getData = () => load(DATA_SERVER, ErrorText.GET_DATA);
+const getData = () => load(ENDPOINTS.GET_DATA, ErrorText.GET_DATA);
 
-const sendData = (body) => load(SENDING_SERVER, ErrorText.SEND_DATA, Method.POST, body);
+const sendData = (body) => load(ENDPOINTS.SUBMIT_FORM, ErrorText.SEND_DATA, Method.POST, body);
 
 export {getData, sendData};
