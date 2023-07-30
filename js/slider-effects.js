@@ -1,3 +1,5 @@
+import { imageUploaded } from './scale.js';
+
 const EFFECTS = [
   {
     name: 'none',
@@ -49,15 +51,15 @@ const EFFECTS = [
   }
 ];
 
-const imageUploaded = document.querySelector('.img-upload__preview img');
+const DEFAULT_EFFECT = EFFECTS[0];
+
 const effectsList = document.querySelector('.effects__list');
 const sliderInput = document.querySelector('.effect-level__value');
 const sliderRange = document.querySelector('.img-upload__effect-level');
 const effectSlider = document.querySelector('.effect-level__slider');
-const defaultEffect = EFFECTS[0];
-let currentEffect = defaultEffect;
+let currentEffect = DEFAULT_EFFECT;
 
-const isDefaultEffect = () => currentEffect === defaultEffect;
+const isDefaultEffect = () => currentEffect === DEFAULT_EFFECT;
 
 const showSlider = () => {
   sliderRange.classList.remove('hidden');
@@ -105,14 +107,14 @@ const onEffectChange = (evt) => {
 const onSliderUpdate = () => {
   sliderInput.value = effectSlider.noUiSlider.get();
   if (isDefaultEffect()) {
-    imageUploaded.style.filter = defaultEffect.style;
+    imageUploaded.style.filter = DEFAULT_EFFECT.style;
   } else {
     imageUploaded.style.filter = `${currentEffect.style}(${sliderInput.value}${currentEffect.unit})`;
   }
 };
 
 const resetEffects = () => {
-  currentEffect = defaultEffect;
+  currentEffect = DEFAULT_EFFECT;
   updateSlider();
 };
 

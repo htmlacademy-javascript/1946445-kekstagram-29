@@ -1,6 +1,6 @@
 import { isEscapeKey } from './utils.js';
 import { resetScale, onBiggerButtonClick, onSmallerButtonClick, imageUploaded } from './scale.js';
-import { MAX_HASHTAG_QUANTITY, VALID_SYMBOLS } from './data.js';
+import { MAX_HASHTAG_QUANTITY, VALID_SYMBOLS, PERCENTAGE, INITIAL_SCALE } from './data.js';
 import { resetEffects } from './slider-effects.js';
 
 const body = document.querySelector('body');
@@ -37,7 +37,7 @@ const closeUploadModal = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
   imageReducingButton.removeEventListener('click', onSmallerButtonClick);
   imageEnlargingButton.removeEventListener('click', onBiggerButtonClick);
-  imageUploaded.style.transform = `scale(${100 / 100})`;
+  imageUploaded.style.transform = `scale(${INITIAL_SCALE / PERCENTAGE})`;
 };
 
 const isTextFieldFocused = () =>
@@ -76,25 +76,19 @@ const hasUniqueTags = (value) => {
 pristine.addValidator(
   hashtagField,
   hasValidCount,
-  'Не больше 5 хештегов',
-  3,
-  true
+  'Не больше 5 хештегов'
 );
 
 pristine.addValidator(
   hashtagField,
   hasUniqueTags,
-  'Хештеги не должны повторяться',
-  1,
-  true
+  'Хештеги не должны повторяться'
 );
 
 pristine.addValidator(
   hashtagField,
   hasValidTags,
-  'Хештег должен начинаться с #, содержать буквы или цифры, быть не длиннее 20 символов',
-  2,
-  true
+  'Хештег должен начинаться с #, содержать буквы или цифры, быть не длиннее 20 символов'
 );
 
 const disableSubmitButton = () => {
@@ -122,4 +116,4 @@ const onFormSubmit = (callback) => {
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonKeydown);
 
-export {onFormSubmit, closeUploadModal, onDocumentKeydown};
+export {onFormSubmit, closeUploadModal, onDocumentKeydown, body};

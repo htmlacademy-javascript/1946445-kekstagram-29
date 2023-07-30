@@ -1,10 +1,10 @@
-import { DEFAULT_SCALE, SCALE_STEP, MIN_SCALE, MAX_SCALE } from './data.js';
+import { DEFAULT_SCALE, SCALE_STEP, MIN_SCALE, MAX_SCALE, PERCENTAGE } from './data.js';
 
 const imageScaleInput = document.querySelector('.scale__control--value');
 const imageUploaded = document.querySelector('.img-upload__preview img');
 
 const scaleImage = (value) => {
-  imageUploaded.style.transform = `scale(${value / 100})`;
+  imageUploaded.style.transform = `scale(${value / PERCENTAGE})`;
   imageScaleInput.value = `${value}%`;
 };
 

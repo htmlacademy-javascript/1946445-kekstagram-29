@@ -7,7 +7,7 @@ import './slider-effects.js';
 import {getData, sendData} from './api.js';
 import { showSuccessMessage, showErrorMessage } from './messages.js';
 import { showFilteredImages } from './filters.js';
-import {TIMEOUT__DELAY} from './data.js';
+import {TIMEOUT_DELAY} from './data.js';
 import './image-preview.js';
 
 onFormSubmit(async(data) => {
@@ -22,7 +22,7 @@ onFormSubmit(async(data) => {
 
 try {
   const data = await getData();
-  const debounceCreateThumbnails = debounce(createThumbnails, TIMEOUT__DELAY);
+  const debounceCreateThumbnails = debounce(createThumbnails, TIMEOUT_DELAY);
   createThumbnails(data);
   showFilteredImages(data, debounceCreateThumbnails);
 } catch (err) {
