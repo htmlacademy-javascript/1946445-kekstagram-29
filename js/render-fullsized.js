@@ -1,7 +1,7 @@
 import { isEscapeKey } from './utils.js';
 import { COMMENTS_QUANTITY } from './data.js';
+import { body } from './form.js';
 
-const body = document.querySelector('body');
 const bigImage = document.querySelector('.big-picture');
 const bigPicture = document.querySelector('.big-picture__img img');
 const bigImageCommentsTemplate = document.querySelector('.social__comments');
@@ -24,7 +24,7 @@ const openModal = () => {
   document.addEventListener('keydown', onCloseButtonKeydown);
 };
 
-const closeModal = () => {
+const onBigImageButtonCloseClick = () => {
   bigImage.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onCloseButtonKeydown);
@@ -72,6 +72,6 @@ const renderBigImageData = (item) => {
   bigImageCommentsLoader.addEventListener('click',onCommentsLoaderClick);
 };
 
-bigImageCloseButton.addEventListener ('click', closeModal);
+bigImageCloseButton.addEventListener ('click', onBigImageButtonCloseClick);
 
 export {openModal,renderBigImageData};

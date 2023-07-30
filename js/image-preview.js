@@ -1,6 +1,7 @@
+import { imageUploaded } from './scale.js';
+
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const fileChooser = document.querySelector('.img-upload__input[type=file]');
-const preview = document.querySelector('.img-upload__preview img');
 const effectPreview = document.querySelectorAll('.effects__preview');
 
 fileChooser.addEventListener('change', () => {
@@ -10,9 +11,9 @@ fileChooser.addEventListener('change', () => {
   const matches = FILE_TYPES.some((type) => fileName.endsWith(type));
 
   if (matches) {
-    preview.src = URL.createObjectURL(file);
+    imageUploaded.src = URL.createObjectURL(file);
     effectPreview.forEach((effect) => {
-      effect.style.backgroundImage = `url(${preview.src})`;
+      effect.style.backgroundImage = `url(${imageUploaded.src})`;
     });
   }
 });

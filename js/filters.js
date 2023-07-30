@@ -1,4 +1,4 @@
-import { RANDOM__IMAGES__QUANTITY } from './data.js';
+import { RANDOM_IMAGES_QUANTITY } from './data.js';
 
 const FILTER_TYPES = {
   DEFAULT: 'filter-default',
@@ -19,7 +19,7 @@ const filterPopular = (imageA, imageB) => imageB.comments.length - imageA.commen
 const sortImages = () => {
   switch(currentFilter) {
     case FILTER_TYPES.RANDOM:
-      return [...images].sort(filterRandom).slice(0, RANDOM__IMAGES__QUANTITY);
+      return [...images].sort(filterRandom).slice(0, RANDOM_IMAGES_QUANTITY);
     case FILTER_TYPES.DISCUSSED:
       return [...images].sort(filterPopular);
     default:
